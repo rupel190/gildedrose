@@ -4,6 +4,10 @@ class GildedRose(var items: Array<Item>) {
 
     fun updateQuality() {
         for (i in items.indices) {
+            if (items[i].quality < 80 && items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                items[i].quality++
+            }
+
             if (!items[i].name.equals("Aged Brie") && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -36,6 +40,7 @@ class GildedRose(var items: Array<Item>) {
 
             if (items[i].sellIn < 0) {
                 if (!items[i].name.equals("Aged Brie")) {
+
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -45,7 +50,10 @@ class GildedRose(var items: Array<Item>) {
                     } else {
                         items[i].quality = items[i].quality - items[i].quality
                     }
-                } else {
+
+                }
+
+                else {
                     if (items[i].quality < 50) {
                         items[i].quality = items[i].quality + 1
                     }
