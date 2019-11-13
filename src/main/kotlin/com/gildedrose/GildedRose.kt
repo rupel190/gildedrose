@@ -1,6 +1,21 @@
 package com.gildedrose
 
+import com.gildedrose.updatestrategies.ItemUpdaterFactory
+
 class GildedRose(var items: Array<Item>) {
+
+    fun updateQualityNew() {
+        for (item in items) {
+            //choose correct updater for item
+            val updater = ItemUpdaterFactory.retrieveUpdater(item)
+            if(updater != null) {
+                updater.update(item)
+            } else {
+                updateQuality()
+            }
+        }
+
+    }
 
     fun updateQuality() {
         for (i in items.indices) {
