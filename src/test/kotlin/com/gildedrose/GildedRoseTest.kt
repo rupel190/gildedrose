@@ -72,7 +72,7 @@ class GildedRoseTest {
     @Test
     fun `quality never exceeds 50`() {
         //Arrange
-        val items = testItems()
+        val items = testItems().filter { !it.name.contains("sulfuras", true) }.toTypedArray()
         val app = GildedRose(items)
         //Act
         for (i in 1..50) {
