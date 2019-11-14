@@ -1,6 +1,7 @@
 package com.gildedrose
 
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 
 class GildedRoseTest {
@@ -21,8 +22,8 @@ class GildedRoseTest {
         val items = testItems()
         val app = GildedRose(items)
         //Act
-        app.update()
-        app.update()
+        app.updateQuality()
+        app.updateQuality()
         //Assert
         assertEquals(28, items.first().quality)
     }
@@ -33,8 +34,8 @@ class GildedRoseTest {
         val items = testItems()
         val app = GildedRose(items)
         //Act
-        app.update()
-        app.update()
+        app.updateQuality()
+        app.updateQuality()
         //Assert
         assertEquals(3, items.first().sellIn)
     }
@@ -48,7 +49,7 @@ class GildedRoseTest {
         val amazin = items.find { it.name.contains("amazin", true) }
         //Act
         for (i in 1..10) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         assertEquals(15, amazin?.quality)
@@ -62,7 +63,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         //Act
         for (i in 1..50) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         items.forEach { println("quality: " + it.quality); assertTrue(it.quality >= 0) }
@@ -75,7 +76,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         //Act
         for (i in 1..50) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         items.forEach { assertTrue(it.quality <= 50) }
@@ -90,7 +91,7 @@ class GildedRoseTest {
         val brie = items.find { it.name.contains("brie", true) }
         //Act
         for (i in 1..5) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         assertEquals(17, brie?.quality)
@@ -104,7 +105,7 @@ class GildedRoseTest {
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
         for (i in 1..50) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         assertTrue(sulfuras?.sellIn!! > 0)
@@ -118,7 +119,7 @@ class GildedRoseTest {
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
         for (i in 1..50) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         assertTrue(sulfuras?.quality!! >= 4)
@@ -132,7 +133,7 @@ class GildedRoseTest {
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
         for (i in 1..100) {
-            app.update()
+            app.updateQuality()
         }
         //Assert
         assertEquals(80, sulfuras?.quality)
@@ -145,7 +146,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         val backstagePass = items.find { it.name.contains("backstage", true) }
         //Act
-        app.update()
+        app.updateQuality()
         //Assert
         assertEquals(10, backstagePass?.sellIn)  //11->10
         assertEquals(21, backstagePass?.quality) //20->21
@@ -158,8 +159,8 @@ class GildedRoseTest {
         val app = GildedRose(items)
         val backstagePass = items.find { it.name.contains("backstage", true) }
         //Act
-        app.update()
-        app.update()
+        app.updateQuality()
+        app.updateQuality()
         //Assert
         assertEquals(9, backstagePass?.sellIn)   //11->10 ; 10->9
         assertEquals(23, backstagePass?.quality) //20->21 ; 21->23
@@ -173,7 +174,7 @@ class GildedRoseTest {
         val backstagePass = items.find { it.name.contains("backstage", true) }
         backstagePass?.sellIn = 5 //override for simpler test
         //Act
-        app.update()
+        app.updateQuality()
         //Assert
         assertEquals(4, backstagePass?.sellIn)   //5-> 4
         assertEquals(23, backstagePass?.quality) //20->23
@@ -187,8 +188,8 @@ class GildedRoseTest {
         val backstagePass = items.find { it.name.contains("backstage", true) }
         backstagePass?.sellIn = 1 //override for simpler test
         //Act
-        app.update()
-        app.update()
+        app.updateQuality()
+        app.updateQuality()
         //Assert
         assertEquals(-1, backstagePass?.sellIn) //day of concert: 1->0 ; after concert: 0-> -1
         assertEquals(0, backstagePass?.quality) //20->0
