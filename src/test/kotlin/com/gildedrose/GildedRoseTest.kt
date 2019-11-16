@@ -6,12 +6,14 @@ import org.junit.Test
 
 class GildedRoseTest {
 
+    //Not a prototype pattern but did the job regardless
     fun testItems(): Array<Item> {
         return arrayOf(
                 Item("Amazin Prome", 5, 30),
-                Item("Sulfuras, Hand of Ragnaros", 3, 4),
+                Item("Sulfuras, Hand of Ragnaros", 3, 80),
                 Item("Aged Brie", 40, 12),
-                Item("Backstage passes to a TAFKAL80ETC concert", 11, 20)
+                Item("Backstage passes to a TAFKAL80ETC concert", 11, 20),
+                Item("Conjured conjurer conjuring conjurables", 10, 10)
         )
     }
 
@@ -22,8 +24,8 @@ class GildedRoseTest {
         val items = testItems()
         val app = GildedRose(items)
         //Act
-        app.updateQuality()
-        app.updateQuality()
+        app.update()
+        app.update()
         //Assert
         assertEquals(28, items.first().quality)
     }
@@ -34,8 +36,8 @@ class GildedRoseTest {
         val items = testItems()
         val app = GildedRose(items)
         //Act
-        app.updateQuality()
-        app.updateQuality()
+        app.update()
+        app.update()
         //Assert
         assertEquals(3, items.first().sellIn)
     }
@@ -49,7 +51,7 @@ class GildedRoseTest {
         val amazin = items.find { it.name.contains("amazin", true) }
         //Act
         for (i in 1..10) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         assertEquals(15, amazin?.quality)
@@ -63,7 +65,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         //Act
         for (i in 1..50) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         items.forEach { println("quality: " + it.quality); assertTrue(it.quality >= 0) }
@@ -76,7 +78,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         //Act
         for (i in 1..50) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         items.forEach { assertTrue(it.quality <= 50) }
@@ -91,7 +93,7 @@ class GildedRoseTest {
         val brie = items.find { it.name.contains("brie", true) }
         //Act
         for (i in 1..5) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         assertEquals(17, brie?.quality)
@@ -105,7 +107,7 @@ class GildedRoseTest {
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
         for (i in 1..50) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         assertTrue(sulfuras?.sellIn!! > 0)
@@ -119,21 +121,21 @@ class GildedRoseTest {
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
         for (i in 1..50) {
-            app.updateQuality()
+            app.update()
         }
         //Assert
         assertTrue(sulfuras?.quality!! >= 4)
     }
 
     @Test
-    fun `item - sulfuras doesn't exceed 80`() {
+    fun `item - sulfuras quality is 80`() {
         //Arrange
         val items = testItems()
         val app = GildedRose(items)
         val sulfuras = items.find { it.name.contains("sulfuras", true) }
         //Act
-        for (i in 1..100) {
-            app.updateQuality()
+        for (i in 1..10) {
+            app.update()
         }
         //Assert
         assertEquals(80, sulfuras?.quality)
@@ -146,7 +148,7 @@ class GildedRoseTest {
         val app = GildedRose(items)
         val backstagePass = items.find { it.name.contains("backstage", true) }
         //Act
-        app.updateQuality()
+        app.update()
         //Assert
         assertEquals(10, backstagePass?.sellIn)  //11->10
         assertEquals(21, backstagePass?.quality) //20->21
@@ -159,8 +161,8 @@ class GildedRoseTest {
         val app = GildedRose(items)
         val backstagePass = items.find { it.name.contains("backstage", true) }
         //Act
-        app.updateQuality()
-        app.updateQuality()
+        app.update()
+        app.update()
         //Assert
         assertEquals(9, backstagePass?.sellIn)   //11->10 ; 10->9
         assertEquals(23, backstagePass?.quality) //20->21 ; 21->23
@@ -174,10 +176,10 @@ class GildedRoseTest {
         val backstagePass = items.find { it.name.contains("backstage", true) }
         backstagePass?.sellIn = 5 //override for simpler test
         //Act
-        app.updateQuality()
+        app.update() //transistion 5->4
         //Assert
-        assertEquals(4, backstagePass?.sellIn)   //5-> 4
-        assertEquals(23, backstagePass?.quality) //20->23
+        assertEquals(4, backstagePass?.sellIn)
+        assertEquals(23, backstagePass?.quality)
     }
 
     @Test
@@ -188,11 +190,23 @@ class GildedRoseTest {
         val backstagePass = items.find { it.name.contains("backstage", true) }
         backstagePass?.sellIn = 1 //override for simpler test
         //Act
-        app.updateQuality()
-        app.updateQuality()
+        app.update() //transition to day of concert
+        app.update() //transition to day >after concert<
         //Assert
-        assertEquals(-1, backstagePass?.sellIn) //day of concert: 1->0 ; after concert: 0-> -1
-        assertEquals(0, backstagePass?.quality) //20->0
+        assertEquals(0, backstagePass?.quality)
+    }
+
+    @Test
+    fun `item - conjured degrades twice as fast`() {
+        //Arrange
+        val items = testItems()
+        val app = GildedRose(items)
+        val conjured = items.find { it.name.contains("conjured", true) }
+        //Act
+        app.update()
+        app.update()
+        //Assert
+        assertEquals(6, conjured?.quality)
     }
     //endregion
 }

@@ -12,8 +12,10 @@ buildscript {
 
 plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.21"
+    id("io.gitlab.arturbosch.detekt").version("1.0.0.RC8")
 }
 
+apply from: './detekt.gradle'
 apply plugin: 'kotlin'
 
 dependencies {
@@ -22,6 +24,7 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    jcenter()
 }
 compileKotlin {
     kotlinOptions {
@@ -33,3 +36,4 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
+

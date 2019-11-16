@@ -1,4 +1,4 @@
-package com.gildedrose.updatestrategies
+package com.gildedrose.updaters
 
 import com.gildedrose.Item
 
