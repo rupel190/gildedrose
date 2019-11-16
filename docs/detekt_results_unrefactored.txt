@@ -1,0 +1,66 @@
+win10-surface➜  Kotlin  ᐅ  ./gradlew detektCheck
+
+> Task :detektCheck 
+..
+
+2 kotlin files were analyzed.
+
+Ruleset: comments
+Ruleset: complexity - 40min debt
+        ComplexMethod - 21/10 - [updateQuality] at  /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:5:5
+        NestedBlockDepth - 6/4 - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:5:5
+Ruleset: empty-blocks
+Ruleset: exceptions
+Ruleset: naming
+Ruleset: performance
+Ruleset: potential-bugs
+Ruleset: style - 1h 10min debt
+        MaxLineLength - [GildedRose.kt] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:7:124
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:14:40
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:18:47
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:19:52
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:24:47
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:25:52
+        MagicNumber - [updateQuality] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/GildedRose.kt:49:44
+        NewLineAtEndOfFile - [Item.kt] at /GildedRose-Refactoring-Kata-master/Kotlin/src/main/kotlin/com/gildedrose/Item.kt:3:68
+
+Overall debt: 1h 50min
+
+Complexity Report:
+        - 62 lines of code (loc)
+        - 52 source lines of code (sloc)
+        - 31 logical lines of code (lloc)
+        - 0 comment lines of code (cloc)
+        - 21 McCabe complexity (mcc)
+        - 10 number of total code smells
+        - 0 % comment source ratio
+        - 677 mcc per 1000 lloc
+        - 322 code smells per 1000 lloc
+
+Project Statistics:
+        - number of properties: 0
+        - number of functions: 1
+        - number of classes: 2
+        - number of packages: 1
+        - number of kt files: 2
+
+Successfully generated HtmlOutputReport at /GildedRose-Refactoring-Kata-master/Kotlin/build/reports/detekt.xml/detekt-report.html
+Successfully generated XmlOutputReport at /GildedRose-Refactoring-Kata-master/Kotlin/build/reports/detekt.xml/detekt-checkstyle.xml
+Successfully generated PlainOutputReport at /GildedRose-Refactoring-Kata-master/Kotlin/build/reports/detekt.xml/detekt-plain.txt
+Exception in thread "main" io.gitlab.arturbosch.detekt.cli.console.BuildFailure: Build failed with 10 weighted issues (threshold defined was 10).
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':detektCheck'.
+> Process 'command '/usr/lib/jvm/java-11-openjdk-amd64/bin/java'' finished with non-zero exit value 1
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Ru
+n with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 6s
+1 actionable task: 1 executed

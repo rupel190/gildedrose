@@ -1,0 +1,86 @@
+# Refactoring Steps
+
+## Methode 1: Requirements known
+If the requirements are known it is possible to refactor using a test-first approach:
+- Based on the given requirements Write as many (useful, primarily with edge cases) tests as possible
+- Find inconsistencies with the code base and resolve them if possible
+- Continue with "Improve Architecture"
+
+## Method 2: Requirements unknown
+If the requirements are unknown consequentially the functionality is unknown.
+For this reason it is necessary to understand the codebase before it can be refactored.
+Steps will mostly be executed at the same time except for a general guideline.
+
+- Write tests as soon as possible at the time they become "available" through code comprehension
+- Extract methods from the updateQuality method - Leads to enhanced readability
+- - Duplicated code should become more apparent through method extraction
+- - Shared functionality can now be combined
+- Replace simple assignments such as "test = test-1" with "test--"
+- Use language specific features if available
+- Simplify as much as possible while using tests-cases to back the modifications up
+- Continue with "Improve Architecture"
+
+## Improve Architecture
+In order to improve maintainability the following steps have been taken
+- Items should get their own way of updating. Therefore every item receives an updater class. These classes are based on a mutual interface instead of an abstract class, abstract class based on interfaces etc. to keep complexity low
+- In order to choose the correct updater a factory is used
+- Now it is possible to ask the factory using an item for the correct way to update the given item - the updater can be saved in an interface variable (~weak wording...)
+- While working on improvments: For each separate item the factory can still use the old method by having the factory return null (for example) . When the updater is finished it can be returned and the new logic will be used
+
+
+## Advantages
+- Small, incremental changes in the refactoring process are possible
+- Special updater cases can easily be added, Logic can easily be modified bc it's isolated
+- TDD is very simple (tested with conjurable items)
+- Maintenance won't have a negative impact anymore (even if the old solution is refactored changes would lead to similar problems after some alterations)
+
+# Metrics
+
+## Herangehensweise
+
+[Detekt](https://arturbosch.github.io/detekt/index.html) is used in the following configuration in its default configuration:
+- Ruleset: comments
+- Ruleset: complexity
+- Ruleset: empty-blocks
+- Ruleset: exceptions
+- Ruleset: naming
+- Ruleset: performance
+- Ruleset: potential-bugs
+- Ruleset: style
+
+The following rules were relevant:
+- ComplexMethod: Complex methods are hard to understand and read. It might not be obvious what side-effects a complex method has. Prefer splitting up complex methods into smaller methods that are in turn easier to understand. Smaller methods can also be named much clearer which leads to improved readability of the code.
+This rule uses McCabe’s Cyclomatic Complexity (MCC) metric to measure the number of linearly independent paths through a function’s source code. The higher the number of independent paths, the more complex a method is. Complex methods use too many of the following statements. Each one of them adds one to the complexity count.
+- NestedBlockDepth: _This rule reports excessive nesting depth in functions. Excessively nested code becomes harder to read and increases its hidden complexity. It might become harder to understand edge-cases of the function.
+Prefer extracting the nested code into well-named functions to make it easier to understand._
+- MaxLineLength: This rule reports lines of code which exceed a defined maximum line length.
+Long lines might be hard to read on smaller screens or printouts. Additionally having a maximum line length in the codebase will help make the code more uniform.
+- This rule detects and reports usages of magic numbers in the code. Prefer defining constants with clear names describing what the magic number means.
+- This rule reports files which do not end with a line separator.
+
+The results are found in:
+- detekt_results_unrefactored
+- detekt_results_refactored
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
