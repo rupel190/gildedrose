@@ -1,6 +1,4 @@
-win10-surface➜  Kotlin : dev ✘ :✖✹✭ ᐅ  ./gradlew detektCheck
-
-> Task :detektCheck 
+> Task :detektCheck
 .........
 
 9 kotlin files were analyzed.
@@ -15,14 +13,14 @@ Ruleset: potential-bugs
 Ruleset: style
 
 Complexity Report:
-        - 148 lines of code (loc)
-        - 101 source lines of code (sloc)
+        - 146 lines of code (loc)
+        - 100 source lines of code (sloc)
         - 59 logical lines of code (lloc)
         - 6 comment lines of code (cloc)
-        - 24 McCabe complexity (mcc)
+        - 23 McCabe complexity (mcc)
         - 0 number of total code smells
-        - 5 % comment source ratio
-        - 406 mcc per 1000 lloc
+        - 6 % comment source ratio
+        - 389 mcc per 1000 lloc
         - 0 code smells per 1000 lloc
 
 Project Statistics:
@@ -34,10 +32,4 @@ Project Statistics:
 
 Successfully generated HtmlOutputReport at /GildedRose Kata extracted/Kotlin/build/reports/detekt.xml/detekt-report.html
 Successfully generated XmlOutputReport at /GildedRose Kata extracted/Kotlin/build/reports/detekt.xml/detekt-checkstyle.xml
-Successfully generated PlainOutputReport at /GildedRose Kata extracted/Kotlin/build/reports/detekt.xml/detekt-plain.txt
 
-detekt finished in 2250 ms.
-
-
-BUILD SUCCESSFUL in 4s
-1 actionable task: 1 executed
