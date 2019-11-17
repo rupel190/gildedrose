@@ -7,8 +7,8 @@ private const val MAXQUALITY = 50
 
 private const val WORTHLESSQUALITY = 0
 private const val SMALLQUALITYINCREMENT = 1
-private const val MEDIUMQUALITYINCREMENT = 1
-private const val LARGEQUALITYINCREMENT = 1
+private const val MEDIUMQUALITYINCREMENT = 2
+private const val LARGEQUALITYINCREMENT = 3
 
 private const val THRESHOLDSELLINOVER = 0
 private const val THRESHOLDSELLINSHORTLY = 5
